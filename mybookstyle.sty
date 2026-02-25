@@ -1,0 +1,736 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mybookstyle}[2025/08/09 Custom Vietnamese document style]
+
+
+%================================================================
+% HỆ THỐNG THEME
+% Dùng trong preamble: \settheme{red}
+% Các lựa chọn: green (mặc định), red, blue, purple, orange, teal, brown
+%================================================================
+\def\settheme#1{%
+  \def\tmp{#1}%
+  \def\optgreen{green}\def\optred{red}\def\optblue{blue}%
+  \def\optpurple{purple}\def\optorange{orange}%
+  \def\optteal{teal}\def\optbrown{brown}%
+  \ifx\tmp\optgreen  \definecolor{themecolor}{RGB}{34,  77,  68}\else
+  \ifx\tmp\optred    \definecolor{themecolor}{RGB}{140, 30,  30}\else
+  \ifx\tmp\optblue   \definecolor{themecolor}{RGB}{18,  60, 120}\else
+  \ifx\tmp\optpurple \definecolor{themecolor}{RGB}{72,  30, 110}\else
+  \ifx\tmp\optorange \definecolor{themecolor}{RGB}{150, 70,  15}\else
+  \ifx\tmp\optteal   \definecolor{themecolor}{RGB}{15,  90,  90}\else
+  \ifx\tmp\optbrown  \definecolor{themecolor}{RGB}{90,  50,  20}\else
+    \definecolor{themecolor}{RGB}{34, 77, 68}%
+  \fi\fi\fi\fi\fi\fi\fi%
+  \colorlet{classicgreen}{themecolor}% alias tương thích ngược
+}
+
+%================================================================
+% CÁC GÓI YÊU CẦU
+%================================================================
+
+%--- Tắt cảnh báo ---%
+\usepackage{silence}
+\WarningFilter{mparhack}{Marginpars may have changed}
+\WarningFilter{caption}{Unused}
+\AtBeginDocument{
+  \hfuzz=200pt
+  \hbadness=10000
+  \vfuzz=200pt
+  \vbadness=10000
+}
+%--- Ngôn ngữ & mã hóa ---%
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T5]{fontenc}
+\RequirePackage[vietnamese]{babel}
+
+%--- Toán học ---%
+\RequirePackage{amsmath}
+\RequirePackage{amsxtra}
+\RequirePackage{amssymb}
+\RequirePackage{latexsym}
+\RequirePackage{amscd}
+\RequirePackage{amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{mathrsfs}
+\RequirePackage{yhmath}
+\RequirePackage{amsfonts}
+\RequirePackage{dsfont}
+\RequirePackage{nicefrac}
+\everymath{\displaystyle}
+\def\dx{\mathrm{\, d}x}
+\let\frac\dfrac
+
+%--- Hình ảnh & sơ đồ ---%
+\RequirePackage{graphicx}
+\RequirePackage{svg}
+\RequirePackage{tikz}
+\usetikzlibrary{calc, patterns, intersections, angles, arrows,
+                matrix, quotes, decorations.shapes, backgrounds}
+\RequirePackage{tkz-tab}
+\RequirePackage{tkz-base}
+
+%--- Bảng biểu ---%
+\RequirePackage{array}
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\RequirePackage{multirow}
+\RequirePackage{tabularx}
+\RequirePackage{tabulary}
+\RequirePackage{cellspace}
+\RequirePackage{makecell}
+
+%--- Bố cục trang ---%
+\RequirePackage{geometry}
+\geometry{
+  paperwidth=210mm, paperheight=297mm,
+  left=35pt, top=1.8cm, bottom=2.5cm,
+  textwidth=338pt, marginparsep=20pt, marginparwidth=164pt,
+  bindingoffset=0.8cm,
+}
+\usepackage{needspace}
+\RequirePackage{indentfirst}
+\RequirePackage{calc}
+\RequirePackage{multicol}
+\RequirePackage{paracol}
+\RequirePackage{wrapfig}
+\RequirePackage{lipsum}
+\RequirePackage[explicit]{titlesec}
+\RequirePackage[titles]{tocloft}
+\RequirePackage{titletoc}
+\RequirePackage{fancyhdr}
+\RequirePackage{etoolbox}
+\RequirePackage{enumitem}
+\RequirePackage{marginfix}
+\RequirePackage{lettrine}
+\RequirePackage{xstring}
+
+%--- Màu sắc & hộp văn bản ---%
+\RequirePackage{xcolor}
+\RequirePackage{colortbl}
+\RequirePackage[most]{tcolorbox}
+\tcbuselibrary{theorems, skins, hooks, breakable}
+\usepackage{framed}
+
+%--- Chú thích & hình phụ ---%
+\RequirePackage[labelformat=simple]{subfig}
+\RequirePackage{caption}
+\RequirePackage[labelfont={sf,bf,color=themecolor},
+                textfont=md, font=footnotesize]{caption}
+\RequirePackage{capt-of}
+
+%--- Phông chữ ---%
+\RequirePackage{tgadventor}
+\RequirePackage{helvet}
+\RequirePackage{mathpazo}
+\RequirePackage{mlmodern}
+\RequirePackage{lmodern}
+
+%--- Ghi chú bên lề ---%
+\RequirePackage{marginnote}
+\RequirePackage[mark=arabic, classic]{sidenotesplus}
+\DeclareCaptionStyle{marginfigure}{labelfont={sf,bf,color=themecolor},
+                                   font=footnotesize, justification=centering}
+
+%--- Hyperref (luôn cuối cùng) ---%
+\RequirePackage[unicode=true, hidelinks]{hyperref}
+
+%================================================================
+% HYPERREF
+%================================================================
+\hypersetup{
+  colorlinks=true,
+  linkcolor=themecolor,
+  urlcolor=blues,
+  citecolor=blues,
+  pdfencoding=auto,
+  bookmarksopen=true,
+  bookmarksnumbered=true,
+  pdfstartview=FitH,
+}
+
+\addto\extrasvietnamese{\renewcommand{\figureautorefname}{Hình}}
+\providecommand*{\subfigureautorefname}{Hình}
+
+\DeclareCaptionLabelSeparator{halfem}{\hspace{0.5em}}
+\captionsetup[subfloat]{labelsep=halfem}
+
+%================================================================
+% MÀU SẮC
+%================================================================
+\definecolor{lightblue}    {rgb}{0.68, 0.85, 0.9}
+\definecolor{navy}         {rgb}{0, 0.2, 0.4}
+\definecolor{chapterc}     {rgb}{24, 116, 205}
+\definecolor{maroon}       {rgb}{0.5, 0, 0}
+\definecolor{mytheorembg}  {RGB}{120, 81, 169}
+\definecolor{mytheoremfr}  {HTML}{00007B}
+\definecolor{myexamplebg}  {HTML}{F2FBF8}
+\definecolor{myexamplefr}  {HTML}{88D6D1}
+\definecolor{myexampleti}  {HTML}{2A7F7F}
+\definecolor{myp}          {RGB}{197, 92, 212}
+\definecolor{exr}          {RGB}{16, 143, 82}
+\definecolor{blues}        {RGB}{24, 116, 205}
+\definecolor{defb}         {RGB}{240, 243, 250}
+\definecolor{bluec}        {RGB}{22, 104, 180}
+% themecolor được set bởi \settheme{} hoặc mặc định green bên dưới
+\providecolor{themecolor}{RGB}{34, 77, 68}
+
+\renewcommand{\qedsymbol}{\textcolor{themecolor}{$\blacksquare$}}
+
+%================================================================
+% HEADER & FOOTER
+%================================================================
+\setlength{\headheight}{13pt}
+\setlength{\headsep}{1.2cm}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyheadoffset[LE]{\marginparwidth + \marginparsep}
+\fancyheadoffset[RO]{\marginparwidth + \marginparsep}
+
+\fancyhead[LE]{%
+  \color{themecolor!90!white}\usefont{T5}{ppl}{b}{n}\footnotesize
+  \begin{tikzpicture}
+    \node[fill=themecolor!90!white, minimum size=1.3em] (a) {};
+    \node[white] at (a.center) {\thepage};
+  \end{tikzpicture}%
+  \hfill PHẦN\hspace{3pt}\thesection\quad\rightmark%
+}
+
+\fancyhead[RO]{%
+  \color{themecolor!90!white}\usefont{T5}{ppl}{b}{n}\footnotesize
+  CHỦ ĐỀ\hspace{3pt}\thechapter\quad\leftmark%
+  \hfill
+  \begin{tikzpicture}
+    \node[fill=themecolor!90!white, minimum size=1.3em] (a) {};
+    \node[white] at (a.center) {\thepage};
+  \end{tikzpicture}%
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyheadoffset[RO]{\marginparwidth + \marginparsep}
+  \fancyhead[RO]{%
+    \color{themecolor!90!white}\usefont{T5}{ppl}{b}{n}\footnotesize
+    \begin{tikzpicture}
+      \node[fill=themecolor!90!white, minimum size=1.3em] (a) {};
+      \node[white] at (a.center) {\thepage};
+    \end{tikzpicture}%
+  }
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{nohead}{%
+  \fancyhf{}
+  \fancyheadoffset[LE]{\marginparwidth + \marginparsep}
+  \fancyheadoffset[RO]{\marginparwidth + \marginparsep}
+  \fancyhead[LE]{%
+    \color{themecolor!90!white}\usefont{T5}{ppl}{b}{n}\footnotesize
+    \begin{tikzpicture}
+      \node[fill=themecolor!90!white, minimum size=1.3em] (a) {};
+      \node[white] at (a.center) {\thepage};
+    \end{tikzpicture}%
+  }
+  \fancyhead[RO]{%
+    \color{themecolor!90!white}\usefont{T5}{ppl}{b}{n}\footnotesize
+    \begin{tikzpicture}
+      \node[fill=themecolor!90!white, minimum size=1.3em] (a) {};
+      \node[white] at (a.center) {\thepage};
+    \end{tikzpicture}%
+  }
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside\ifodd\c@page\else
+  \hbox{}\thispagestyle{nohead}\newpage
+  \if@twocolumn\hbox{}\newpage\fi
+\fi\fi}
+\makeatother
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}}
+
+%================================================================
+% ĐỊNH DẠNG TIÊU ĐỀ
+%================================================================
+
+\renewenvironment{leftbar}{%
+  \def\FrameCommand{{\color{themecolor!50!white}\vrule width 3pt}\hspace{12pt}}%
+  \MakeFramed{\advance\hsize-\width\FrameRestore}%
+}{\endMakeFramed}
+
+\newcommand{\chapterabstracttext}{}
+\newcommand{\setchapterabstract}[1]{%
+  \renewcommand{\chapterabstracttext}{%
+    \fontfamily{lmr}\fontsize{10}{12}\selectfont\textit{#1}%
+  }%
+}
+
+\titleformat{\chapter}[hang]%
+  {\bfseries\fontfamily{qag}\fontsize{18}{22}\selectfont}%
+  {\parbox[t]{\dimexpr0.12\linewidth-20pt\relax}{%
+    \fontsize{46}{46}\selectfont\raisebox{-1.25\height}{\color{themecolor}\thechapter}}}%
+  {1em}%
+  {\begin{minipage}[t]{1.36\textwidth}
+    \begin{leftbar}
+      {\bfseries\fontfamily{lmss}\fontsize{18}{22}\selectfont\color{themecolor}%
+        \rule{0pt}{2ex}\strut #1\hfil\vskip2ex\break}%
+      \normalfont\chapterabstracttext\rule[-1.5ex]{0pt}{1.5ex}%
+    \end{leftbar}
+  \end{minipage}}
+
+\titleformat{\section}
+  {\bfseries\fontsize{15}{17}\selectfont\usefont{T5}{qag}{b}{n}\color{themecolor}}
+  {\thesection}{1em}{#1}
+  [{\color{themecolor!60!white}\titlerule[0.8pt]}]
+
+\renewcommand{\thesubsection}{}
+\titleformat{\subsection}
+  {\bfseries\fontsize{13}{15}\selectfont\usefont{T5}{qag}{b}{n}}
+  {}{0pt}{\filright\color{themecolor}\thesubsection\hspace{0pt}#1}
+
+\newcommand{\baitap}{%
+  \clearpage
+  \markright{LÀM BÀI TẬP THEO CÁCH RIÊNG CỦA BẠN}
+  \fancyhead[LE]{%
+    \color{themecolor!90!white}\usefont{T5}{ppl}{b}{n}\footnotesize
+    \begin{tikzpicture}
+      \node[fill=themecolor!90!white, minimum size=1.3em] (a) {};
+      \node[white] at (a.center) {\thepage};
+    \end{tikzpicture}%
+    \hfill\rightmark%
+  }
+  \addcontentsline{toc}{section}{Bài tập}
+  \par\noindent
+  \begin{tikzpicture}[overlay, remember picture]
+    \fill[themecolor]
+      (current page.north west) ++(0,-1.8cm)
+      rectangle ++(\paperwidth,-0.8cm);
+    \ifodd\value{page}
+      \node at ([xshift=\dimexpr1in+\hoffset+\oddsidemargin\relax,
+                 yshift=-2.2cm]current page.north west)
+        [anchor=west,
+         font=\bfseries\fontsize{15}{17}\selectfont\usefont{T5}{qag}{b}{n}\color{white}]
+        {BÀI TẬP};
+    \else
+      \node at ([xshift=\dimexpr\hoffset+\oddsidemargin+\marginparwidth+\textwidth-0.3cm\relax,
+                 yshift=-2.2cm]current page.north west)
+        [anchor=west,
+         font=\bfseries\fontsize{15}{17}\selectfont\usefont{T5}{qag}{b}{n}\color{white}]
+        {BÀI TẬP};
+    \fi
+  \end{tikzpicture}
+  \par\vspace{1cm}\noindent%
+}
+
+%================================================================
+% KHOẢNG CÁCH
+%================================================================
+\titlespacing{\chapter}   {0pt}{-1cm}{1.5cm}
+\titlespacing{\section}   {0pt}{8pt}{15pt}
+\titlespacing{\subsection}{0pt}{15pt}{10pt}
+\setlength{\footskip}{35pt}
+\renewcommand{\normalsize}{\fontsize{9pt}{12pt}\selectfont}
+
+\newenvironment{smallfont}{\fontsize{8pt}{12pt}\selectfont}{}
+
+%================================================================
+% MỤC LỤC
+%================================================================
+\makeatletter
+\addto\captionsvietnamese{\def\contentsname{MỤC LỤC}}
+
+\renewcommand\tableofcontents{%
+  \if@twocolumn\@restonecoltrue\onecolumn\else\@restonecolfalse\fi
+  \begingroup
+  \thispagestyle{empty}
+  \let\clearpage\relax
+  \vspace*{0pt}
+  {\raggedleft\color{themecolor}\usefont{T5}{ppl}{b}{n}\huge\bfseries MỤC LỤC\par}
+  \vspace{20pt}
+  \begin{tcolorbox}[
+    enhanced, frame hidden, colback=white,
+    borderline west={1.5pt}{0pt}{themecolor!70!white},
+    boxrule=0pt, left=5mm, right=0mm, top=-5mm, bottom=1mm,
+  ]
+    \renewcommand{\cftchapfont}   {\usefont{T5}{ppl}{b}{n}\normalsize\bfseries\color{themecolor}}
+    \renewcommand{\cftsecfont}    {\usefont{T5}{ppl}{b}{n}\normalsize\color{themecolor}}
+    \renewcommand{\cftsubsecfont} {\usefont{T5}{ppl}{m}{n}\normalsize\color{themecolor}}
+    \setlength{\cftbeforechapskip}  {15pt}
+    \setlength{\cftbeforesecskip}   {10pt}
+    \setlength{\cftbeforesubsecskip}{10pt}
+    \renewcommand{\cftchapleader}{\textcolor{themecolor}{\hspace{0.5em}\hrulefill}\hspace{-1em}}
+    \renewcommand{\cftdot}{}
+    \renewcommand{\cftchappagefont}{%
+      \usefont{T5}{ppl}{b}{n}\small\color{white}%
+      \tikz[overlay]{%
+        \node[fill=themecolor!70!white, inner sep=0.3ex,
+              minimum width=15em, minimum height=1em,
+              yshift=1ex, xshift=12ex] {};
+      }%
+    }
+    \renewcommand{\cftsecpagefont}   {\usefont{T5}{ppl}{b}{n}\small\color{themecolor}}
+    \renewcommand{\cftsubsecpagefont}{\usefont{T5}{ppl}{b}{n}\small\color{themecolor}}
+    \setcounter{tocdepth}{1}
+    \@starttoc{toc}%
+  \end{tcolorbox}
+  \if@restonecol\twocolumn\fi
+  \endgroup
+  \cleardoublepage
+  \pagenumbering{arabic}
+  \normalmarginpar
+}
+\patchcmd{\@starttoc}{\addcontentsline{toc}{chapter}{\contentsname}}{}{}{}
+\makeatother
+
+%================================================================
+% CÁC MÔI TRƯỜNG TCOLORBOX
+%================================================================
+
+%--- Định nghĩa ---%
+\newtcbtheorem[number freestyle={\noexpand\empty}]{Definition}{ĐỊNH NGHĨA~-}
+{
+  enhanced, breakable,
+  colback=themecolor!5!white, colframe=themecolor, colbacklower=white,
+  boxrule=0.5pt, sharp corners, detach title,
+  before upper=\tcbtitle\par\smallskip,
+  coltitle=themecolor, fonttitle=\bfseries\sffamily,
+  description font=\bfseries\sffamily, separator sign none,
+  segmentation style={solid, themecolor},
+}{th}
+
+%--- Tính chất ---%
+\newtcbtheorem[number freestyle={\noexpand\empty}]{tinhchat}{TÍNH CHẤT}
+{
+  enhanced, breakable,
+  colback=themecolor!5!white, colframe=themecolor, colbacklower=white,
+  boxrule=0.5pt, sharp corners, detach title,
+  before upper=\tcbtitle\par\smallskip,
+  coltitle=themecolor, fonttitle=\bfseries\sffamily,
+  description font=\bfseries\sffamily, separator sign none,
+  segmentation style={solid, themecolor},
+}{th}
+
+%--- Chú ý ---%
+\newtcbtheorem[number freestyle={\noexpand\empty}]{attention}{CHÚ Ý}
+{
+  enhanced, breakable, colback=white, colframe=white, boxrule=0pt,
+  borderline west={1pt}{0pt}{themecolor!70!white},
+  sharp corners, detach title,
+  before upper=\tcbtitle\par\smallskip,
+  coltitle=themecolor, fonttitle=\bfseries\sffamily,
+  description font=\mdseries, separator sign none,
+  segmentation style={solid, red!80!black},
+}{th}
+
+%--- Định lí ---%
+\newtcbtheorem[number freestyle={\noexpand\empty}]{Theorem}{ĐỊNH LÍ~-}
+{
+  enhanced, breakable,
+  colback=themecolor!5!white, colframe=white, colbacklower=white,
+  boxrule=0.5pt, sharp corners, detach title,
+  before upper=\tcbtitle\par\smallskip,
+  coltitle=themecolor, fonttitle=\bfseries\sffamily,
+  description font=\bfseries\sffamily, separator sign none,
+  segmentation style={solid, themecolor},
+  frame style={draw=themecolor, dashed},
+}{th}
+
+%--- Bài tập ---%
+\newcounter{ExerciseCounter}[subsection]
+\setcounter{ExerciseCounter}{0}
+
+\newtcbtheorem[number freestyle={\noexpand\empty}]{Exercise}{}
+{
+  enhanced, colback=white, breakable, frame hidden,
+  sharp corners, detach title, separator sign none,
+  overlay unbroken={
+    \stepcounter{ExerciseCounter}
+    \draw[themecolor!60!white, line width=0.5pt]
+      (frame.south west) -- (frame.north west);
+    \draw[themecolor!60!white, line width=0.5pt]
+      (frame.south east) -- (frame.north east);
+    \draw[themecolor!60!white, line width=0.5pt]
+      (frame.south west) -- (frame.south east);
+    \begin{pgfonlayer}{foreground}
+      \fill[themecolor] (frame.north west) circle (7pt);
+      \node at (frame.north west)
+        {\color{white}\bfseries\sffamily\small\theExerciseCounter};
+      \node[anchor=west, font=\bfseries\sffamily\small, text=themecolor]
+        (exlabel) at ([xshift=8pt,yshift=1pt]frame.north west) {\ExerciseLabel};
+    \end{pgfonlayer}
+    \draw[themecolor!60!white, line width=0.5pt]
+      ([xshift=2pt]exlabel.east |- frame.north) -- (frame.north east);
+  },
+  overlay first={
+    \stepcounter{ExerciseCounter}
+    \draw[themecolor!60!white, line width=0.5pt]
+      (frame.south west) -- (frame.north west);
+    \draw[themecolor!60!white, line width=0.5pt]
+      (frame.south east) -- (frame.north east);
+    \begin{pgfonlayer}{foreground}
+      \fill[themecolor] (frame.north west) circle (7pt);
+      \node at (frame.north west)
+        {\color{white}\bfseries\sffamily\small\theExerciseCounter};
+      \node[anchor=west, font=\bfseries\sffamily\small, text=themecolor]
+        (exlabel) at ([xshift=8pt]frame.north west) {\ExerciseLabel};
+    \end{pgfonlayer}
+    \draw[themecolor!60!white, line width=0.5pt]
+      ([xshift=2pt]exlabel.east |- frame.north) -- (frame.north east);
+  },
+  overlay middle={
+    \draw[themecolor!60!white, line width=0.5pt]
+      (frame.south west) -- (frame.north west);
+    \draw[themecolor!60!white, line width=0.5pt]
+      (frame.south east) -- (frame.north east);
+    \draw[themecolor!60!white, line width=0.5pt]
+      (frame.south west) -- (frame.south east);
+  },
+  overlay last={
+    \draw[themecolor!60!white, line width=0.5pt]
+      (frame.south west) -- (frame.north west);
+    \draw[themecolor!60!white, line width=0.5pt]
+      (frame.south east) -- (frame.north east);
+    \draw[themecolor!60!white, line width=0.5pt]
+      (frame.south west) -- (frame.south east);
+  },
+}{exer}
+
+%--- Ví dụ ---%
+\tikzset{
+  decoration={shape backgrounds, shape=circle, shape size=1pt, shape sep=2pt},
+  paint/.style={decorate, fill=themecolor, draw=none, opacity=1},
+}
+
+\newcounter{ExampleCounter}[chapter]
+
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background, main, foreground}
+
+\newtcbtheorem[number freestyle={\noexpand\empty}]{Example}{VÍ DỤ -}
+{
+  enhanced, colback=white, breakable, frame hidden,
+  coltitle=themecolor, boxrule=0sp,
+  overlay unbroken={
+    \stepcounter{ExampleCounter}
+    \draw[paint, line width=1pt]
+      ([xshift=0pt,yshift=-7.7pt]frame.north west) --
+      ([xshift=0pt,yshift=0.5pt] frame.south west) --
+      ([xshift=0pt,yshift=0.5pt] frame.south east);
+    \begin{pgfonlayer}{foreground}
+      \fill[themecolor] ([xshift=0pt,yshift=-13pt]frame.north west) circle (7pt);
+      \node at ([xshift=0pt,yshift=-13pt]frame.north west)
+        {\color{white}\bfseries\sffamily\small\theExampleCounter};
+    \end{pgfonlayer}
+  },
+  overlay first={
+    \stepcounter{ExampleCounter}
+    \draw[paint, line width=1pt]
+      ([xshift=0pt,yshift=-8.5pt]frame.north west) --
+      ([xshift=0pt,yshift=0.5pt] frame.south west);
+    \begin{pgfonlayer}{foreground}
+      \fill[themecolor] ([xshift=0pt,yshift=-13pt]frame.north west) circle (7pt);
+      \node at ([xshift=0pt,yshift=-13pt]frame.north west)
+        {\color{white}\bfseries\sffamily\small\theExampleCounter};
+    \end{pgfonlayer}
+  },
+  overlay middle={
+    \draw[paint, line width=1pt]
+      ([xshift=0pt,yshift=-7.7pt]frame.north west) --
+      ([xshift=0pt,yshift=0.5pt] frame.south west) --
+      ([xshift=0pt,yshift=0.5pt] frame.south east);
+  },
+  overlay last={
+    \draw[paint, line width=1pt]
+      ([xshift=0pt,yshift=-9.5pt]frame.north west) --
+      ([xshift=0pt,yshift=0.5pt] frame.south west) --
+      ([xshift=0pt,yshift=0.5pt] frame.south east);
+  },
+  sharp corners, detach title,
+  before upper=\tcbtitle\par\smallskip,
+  fonttitle=\bfseries\sffamily,
+  description font=\bfseries,
+  separator sign none,
+  segmentation style={solid, themecolor},
+}{ex}
+
+%--- Hệ quả ---%
+\NewTotalTColorBox[auto counter]{\hq}{+m +m}{
+  notitle,
+  colback=themecolor!5!white, colbacklower=white,
+  frame hidden, boxrule=0pt, bicolor, sharp corners,
+  borderline west={2pt}{0pt}{themecolor!40!white},
+}{
+  \textcolor{themecolor}{\sffamily\textbf{{\color{themecolor}Hệ quả}}\xd}%
+  {\color{black}#1}
+  \tcblower
+  \textcolor{themecolor}{\textit{\textbf{{\color{themecolor}Chứng minh}}}}%
+  #2
+}
+
+%================================================================
+% LỆNH TIỆN ÍCH
+%================================================================
+\newcommand{\chuy}[1]{\begin{attention}{}{}#1\end{attention}}
+\newcommand{\dn}[2]  {\begin{Definition}{#1}{}#2\end{Definition}}
+\newcommand{\tc}[1]  {\begin{tinhchat}{}{}#1\end{tinhchat}}
+\newcommand{\thm}[2] {\begin{Theorem}{#1}{}#2\end{Theorem}}
+\newcommand{\ex}[2]  {\begin{Example}{#1}{}#2\end{Example}}
+\newcommand{\bt}[2][]{%
+  \def\ExerciseLabel{BÀI TẬP\if\relax\detokenize{#1}\relax\else\ – #1\fi}%
+  \begin{Exercise}{}{}#2\end{Exercise}%
+}
+
+%================================================================
+% GHI CHÚ LỀ (SIDENOTE)
+%================================================================
+\newcounter{marginnotecounter}
+\renewcommand{\themarginnotecounter}{\arabic{marginnotecounter}}
+
+\let\oldchapter\chapter
+\renewcommand{\chapter}[1]{\oldchapter{#1}\setcounter{marginnotecounter}{0}}
+
+\renewcommand{\footnotesize}{\fontsize{7pt}{10pt}\selectfont}
+\renewcommand*{\raggedleftmarginnote}{\noindent}
+\renewcommand*{\raggedrightmarginnote}{\noindent}
+
+\newcommand{\fn}[1]{\marginnote{\footnotesize{#1}}}
+\newcommand{\lec}[2]{%
+  {\setlength{\marginparwidth}{.07\paperwidth}\reversemarginpar
+   \marginnote{\centering\footnotesize{\textsf{\bfseries #1}}\\#2}}%
+}
+\newcommand{\sn}[1]{\sidenote{\footnotesize #1}}
+
+\NewDocumentCommand{\mn}{O{0pt} m}{%
+  \refstepcounter{marginnotecounter}%
+  \textsuperscript{%
+    \tikz[baseline=(char.base)]{
+      \node[shape=circle, draw, inner sep=0.5pt, line width=0.2pt]
+        (char) {\fontsize{5pt}{12pt}\selectfont\themarginnotecounter};
+    }%
+  }%
+  \marginnote{%
+    \textsuperscript{%
+      \tikz[baseline=(char.base)]{
+        \node[shape=circle, draw, inner sep=0.5pt, line width=0.2pt]
+          (char) {\fontsize{5pt}{12pt}\selectfont\themarginnotecounter};
+      }%
+    }\itshape\footnotesize\hspace{2pt}#2%
+  }[#1]%
+}
+
+%--- Margin caption ---%
+\let\oldmargincaption\margincaption
+\renewcommand{\margincaption}[1]{\vspace*{-10pt}\oldmargincaption{#1}}
+\newcommand{\margincaptionsubfig}[1]{\vspace*{-3pt}\oldmargincaption{#1}}
+
+\AtBeginDocument{%
+  \captionsetup[subfloat]{
+    font=footnotesize, labelfont=md, justification=centering,
+    singlelinecheck=false, position=bottom,
+  }%
+}
+
+%================================================================
+% MARGIN TOC
+%================================================================
+\makeatletter
+\newcommand{\chaptoc}[1][0cm]{%
+  \startcontents[chapters]%
+  {%
+    \ifdefined\snp@rightnotelabel
+      \let\oldrightlabel\snp@rightnotelabel
+      \renewcommand{\snp@rightnotelabel}[1]{}
+    \fi
+    \ifdefined\snp@justifiedleftnotelabel
+      \let\oldjustleftlabel\snp@justifiedleftnotelabel
+      \renewcommand{\snp@justifiedleftnotelabel}[1]{}
+    \fi
+    \sidenote*|#1|{%
+      \hypersetup{linkcolor=black}%
+      \begin{minipage}[b]{\marginparwidth}%
+        \normalfont\bfseries\sffamily\footnotesize
+        \centerline{\color{themecolor}Nội dung chính}
+        \vspace{0.5em}{\color{themecolor!40!white}\hrule}\vspace{0.5em}
+        {\fontsize{6pt}{7pt}\selectfont
+          \printcontents[chapters]{l}{1}{\setcounter{tocdepth}{1}}}
+        \vspace{0.5em}{\color{themecolor!40!white}\hrule}
+      \end{minipage}%
+    }%
+    \ifdefined\oldrightlabel  \let\snp@rightnotelabel\oldrightlabel  \fi
+    \ifdefined\oldjustleftlabel\let\snp@justifiedleftnotelabel\oldjustleftlabel\fi
+  }%
+}
+\makeatother
+
+%================================================================
+% FULLPAGE & CASES
+%================================================================
+\usepackage{ifoddpage}
+
+\newenvironment{fullpage}{%
+  \par\smallskip\checkoddpage
+  \ifoddpage
+    \noindent\begin{minipage}{\textwidth+\marginparwidth+\marginparsep}\smallskip%
+  \else
+    \hspace*{-\marginparwidth-\marginparsep}%
+    \noindent\begin{minipage}{\textwidth+\marginparwidth+\marginparsep}\smallskip%
+  \fi
+}{\end{minipage}\vspace{.1in}}
+
+\newenvironment{ccases}{%
+  \left\{\kern0.01em
+  \def\arraystretch{1.2}
+  \begin{tabular}{@{}p{\dimexpr\linewidth-1em\relax}@{\quad}l@{}}
+}{\end{tabular}\right.}
+
+\makeatletter
+\def\caseswithdelim#1#2{\left#1\,\vcenter{\normalbaselines\m@th
+  \ialign{\strut$##\hfil$&\quad##\hfil\crcr#2\crcr}}\right.}
+\makeatother
+\def\bcases#1{\caseswithdelim[{#1}}
+\def\vcases#1{\caseswithdelim|{#1}}
+\def\pcases#1{\caseswithdelim({#1}}
+
+%================================================================
+% TABULARX & ROWSTYLE
+%================================================================
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\renewcommand{\tabularxcolumn}[1]{>{\arraybackslash}m{#1}}
+
+\newcolumntype{+}{>{\global\let\currentrowstyle\relax}}
+\newcolumntype{^}{>{\currentrowstyle}}
+\newcommand{\rowstyle}[1]{\gdef\currentrowstyle{#1}}
+
+%================================================================
+% IN LẠI HÌNH
+%================================================================
+\newcommand{\reprintfigure}[3]{%
+  \begin{figure}[h]
+    #2
+    \begingroup
+      \renewcommand\thefigure{\ref{#1}}%
+      \caption{#3}%
+    \endgroup
+  \end{figure}
+  \addtocounter{figure}{-1}%
+}
+
+\newcommand{\reprintmfigure}[4]{%
+  \begin{marginfigure}#1
+    #3
+    \begingroup
+      \renewcommand\thefigure{\ref{#2}}%
+      \caption{#4}%
+    \endgroup
+  \end{marginfigure}
+  \addtocounter{figure}{-1}%
+}
+\endinput

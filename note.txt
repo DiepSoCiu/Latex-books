@@ -1,0 +1,17 @@
+    \begin{enumerate}[label=\alph*)]
+		\item
+		$AB$ là tiếp tuyến  \xd
+		$\suyra AB \vuong OB$ \xd
+		$\suyra \tamgiac ABC$ vuông tại $B$ \xd
+		Xét $\tamgiac OBA $ vuông tại B, có: \xd
+		$OB^2 +AB^2 = OA^2 $~(\textit{Định lý Pytago}) \xd
+		$\suyra r^2 +4^2 = (r+2)^2 $ \xd
+		$\suyra r^2 +4^2 = r^2 +4r +4$ \xd
+		$\suyra 4r = 12$ \xd
+		$\suyra$ \colorbox{classicgreen!10!white}{$r=3$}
+		\item 
+		$OA= OC + AC$ \xd
+		$\suyra OA= r + 2$ 
+		$\suyra OA = 3 + 2$ 
+		$\suyra$ \colorbox{classicgreen!10!white}{$OA=5$} \qed
+	\end{enumerate}

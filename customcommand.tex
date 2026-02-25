@@ -1,0 +1,33 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LỆNH CUSTOM
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\tamgiac}{\triangle}
+\newcommand{\dg}{^\circ}
+\newcommand{\tuongduong}{\Leftrightarrow}
+\newcommand{\suyra}{\Rightarrow}
+\newcommand{\goc}{\widehat}
+\newcommand{\vuong}{\perp}
+\newcommand{\thuoc}{\in}
+\newcommand{\khac}{\ne}
+\newcommand{\dongdang}{\sim}
+\newcommand{\can}{\sqrt}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\xd}{\\[0.5em]}
+\newcommand{\xdd}{\par\vspace{6pt}}
+\newcommand{\nn}[1]{\left\{ #1 \right\}}
+\newcommand{\nv}[1]{\left[ #1 \right]}  
+\newcommand{\nt}[1]{\left( #1 \right)}
+\newcommand{\va}{\wedge}
+\newcommand{\hoac}{\vee}
+
+
+\newcommand{\cung}[1]{%
+	\begin{tikzpicture}[baseline=(cung.base)]
+		\node[inner sep=0,text height=1ex,text depth=0.2ex] (cung) at (0,0) {$\textit{#1}$};
+		\draw[line width=0.5pt] ([xshift=0.2em, yshift=0.3em]cung.north west) to[out=45,in=135] ([xshift=0.2em, yshift=0.3em]cung.north east);
+	\end{tikzpicture}
+}

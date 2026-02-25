@@ -1,0 +1,126 @@
+\newpage
+\section{Định lý Viète}
+François Viète (1540 – 1603) là một nhà toán học người Pháp, thường được xem là “cha đẻ của đại số hiện đại”. Ông sinh tại Fontenay-le-Comte (Pháp) trong một gia đình luật sư, và bản thân cũng từng học luật trước khi chuyển hướng nghiên cứu toán học. Viète nổi bật với việc đưa ra cách dùng chữ cái để biểu diễn các ẩn và hệ số trong phương trình, đặt nền móng cho ký hiệu đại số ngày nay.
+\xdd 
+Ngoài sự nghiệp toán học, Viète còn là cố vấn pháp lý và từng phục vụ trong triều đình của vua Henry IV. Các công trình của ông không chỉ giúp giải quyết nhiều bài toán khó thời bấy giờ mà còn ảnh hưởng sâu rộng đến sự phát triển của toán học châu Âu. Định lý Viète về mối quan hệ giữa nghiệm và hệ số của phương trình bậc hai đến nay vẫn được giảng dạy trong chương trình phổ thông.
+
+\begin{marginfigure}|-4.5cm|
+	\centering
+	\includegraphics[width=0.65\marginparwidth]{img/Francois_Viete.jpg}
+	\vspace{0.5cm}
+	\margincaption{François Viète (1540 – 1603)}
+	\label{hinh1.5}
+\end{marginfigure}
+
+\subsection{Tổng quan định lý Viète}
+\thm{Viète}{
+    Nếu phương trình bậc 2: $ax^2 + bx + c = 0$ có nghiệm (nghiệm kép hoặc 2 nghiệm phân biệt) thì: \xd 
+    \[
+        S = x_1 + x_2 = \frac{-b}{a}
+    \]
+
+    \[
+        P = x_1.x_2 = \frac{c}{a}
+    \]
+
+    \textit{Định lý Viète cho phép biết mối quan hệ giữa tổng và tích của 2 nghiệm với hệ số mà không cần phải tính 2 nghiệm chính xác.}
+}
+
+    Kiểm chứng định lý Viète thông qua ví dụ sau:
+    \ex{Viète}{
+        Xét phương trình sau:
+        \[
+            \colorbox{themecolor!10!white}{$x^2 -5x +6 = 0$}  
+        \]
+
+        \[
+            \Delta = b^2 - 4ac = (-5)^2 - 4.1.6 = 1 > 0
+        \]
+
+        Vậy phương trình có 2 nghiệm phân biệt.
+
+        \[
+            S = x_1 + x_2 = \frac{-b}{a} = \frac{5}{1} = 5
+        \]
+
+        \[
+            P = x_1.x_2 = \frac{c}{a} = \frac{6}{1} = 6
+        \]
+
+        Tính nghiệm trực tiếp:
+        \[
+            x_1 = \frac{-b + \can{\Delta}}{2a} ~\hoac~ x_2 = \frac{-b-\can{\Delta}}{2a}
+        \]
+
+        \[
+            x_1 = \frac{--5 + \can{1}}{2.1} = 3 ~\hoac~ x_2 = \frac{--5-\can{1}}{2} = 2
+        \]
+
+        \[
+            x_1 + x_2 = 3 + 2 = 5 \text{~và~} x_1.x_2 = 3.2 = 6
+        \]
+
+        Vậy định lý Viète là đúng.
+    }
+\newpage
+\subsection{Tìm 2 số khi biết tổng và tích của chúng}
+\hq{
+    Nếu hai số có tổng và tích lần lượt bằng $S$ và $P$ thì hai số đó là nghiệm của phương trình: 
+    \[
+        x^2 - Sx + P = 0~~(S^2 -4P \geq  0)
+    \]
+}{
+\xdd     
+Giả sử: $x_1$ hoặc $x_2$ là 2 nghiệm của phương trình bậc hai bất kì.\xd 
+Ta có: $S = x_1 + x_2$ và $P = x_1.x_2$ \xd 
+Theo hệ quả $x_1$ hoặc $x_2$ là hai nghiệm của phương trình:
+\[
+    x^2 - Sx + P = 0
+\]
+\[
+    \suyra x^2 -(x_1+x_2)x +x_1.x_2 = 0
+\]
+\[
+    \suyra x^2 - x_1.x - x_2.x +x_1.x_2 = 0
+\]
+\[
+    \suyra x(x - x_1) - x_2(x - x_1) = 0
+\]
+\[
+    \suyra (x - x_1)(x - x_2) = 0
+\]
+\[
+    \suyra x - x_1 = 0 ~\hoac~ x - x_2 = 0 
+\]
+\[
+    \colorbox{themecolor!10!white}{$\suyra x = x_1 ~\hoac~ x = x_2$}
+\]
+}
+
+\ex{Tìm 2 số khi biết tổng và tích của chúng lần lượt là 7 và 10}{
+    Hai số đó sẽ là nghiệm của phương trình:
+    \[
+        \colorbox{themecolor!10!white}{$x^2 -7x + 10 = 0$}
+    \]
+    \[
+        \Delta = S^2 - 4P = (-7)^2 -4.10 = 9 > 0
+    \]
+    Phương trình có 2 nghiệm phân biệt: \xd 
+    \[
+        x_1 = \frac{7 + \can{9}}{2} = 5 ~\hoac~ x_2 = \frac{7 - \can{9}}{2} = 2
+    \]
+    Vậy 2 số đó là 7 hoặc 10.
+}
+
+\subsection{Nhẩm nghiệm của phương trình bậc 2}
+
+\noindent\textbullet Nếu phương trình $ax^2 + bx + c = 0~(a \khac 0)$ có $a + b + c = 0$ thì phương trình có nghiệm là: $x_1 = 1;~ x_2 = \frac{c}{a}$ \xd 
+\textbullet Nếu phương trình $ax^2 + bx + c = 0~(a \khac 0)$ có $a - b + c = 0$ thì phương trình có nghiệm là: $x_1 = -1;~ x_2 = -\frac{c}{a}$
+
+\ex{không giải mà nhẩm nghiệm của phương trình sau:}{
+    \[
+        \colorbox{themecolor!10!white}{$15x^2 +7x - 22 = 0$}
+    \]
+    Có: $a + b + c = 15 + 7 + (-22) = 0$ \xd 
+    Vậy phương trình có hai nghiệm là: $x_1 = 1;~ x_2 = \frac{c}{a} = \frac{-22}{15}.$
+}

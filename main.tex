@@ -1,0 +1,59 @@
+\documentclass[10pt]{book}
+\usepackage{mybookstyle}
+\settheme{green}
+\input{customcommand.tex}
+%\usepackage{showframe}
+
+\begin{document}
+%===== MỤC LỤC =====%
+\newgeometry{
+  left=35pt,
+  top=2.5cm,
+  bottom=2.5cm,
+  bindingoffset=0.8cm
+}
+\tableofcontents
+\clearpage
+\restoregeometry
+%===== MỤC LỤC =====%
+
+%===== NỘI DUNG =====%
+
+%----- CHƯƠNG 1 -----%
+\setchapterabstract{Chuyên đề đi sâu vào giải quyết các dạng bài tập liên quan đến phương trình bậc 2 như: Giải phương trình bậc hai, vẽ đồ thị, định lý vi-et,...}
+\chapter{PHƯƠNG TRÌNH BẬC 2}
+\chaptoc[0.75cm]
+\input{section/1-1}
+\input{section/1-2}
+\input{section/1-3}
+\input{section/baitap1}
+%\input{section/1-4}
+
+%----- CHƯƠNG 2 -----%
+\setchapterabstract{Bài học giới thiệu về định nghĩa tiếp tuyến, tính chất của tiếp tuyến trong đường tròn, tính chất của hai tiếp tuyến cắt nhau và những bài toán kinh điển về chủ đề này.}
+\chapter{TIẾP TUYẾN CỦA ĐƯỜNG TRÒN}
+\chaptoc[0.68cm]
+\input{section/2-1}
+\input{section/2-2}
+\input{section/baitap2}
+
+%----- CHƯƠNG 3 -----%
+\setchapterabstract{Bài học giới thiệu về các bài toán về việc giải quyết một số vấn đề gần gũi với đời sống bằng kiến thức toán học cơ bản. Các chủ đề tiêu biểu là: chuyển động, diện tích, năng suất, tiền tệ, hình khối,...}
+\chapter{TOÁN THỰC TẾ}
+\chaptoc[0.68cm]
+\input{section/3-1}
+\input{section/3-2}
+\input{section/3-3}
+\input{section/3-4}
+
+%----- CHƯƠNG 4 -----%
+\setchapterabstract{Các đề tham khảo tổng hợp.}
+\chapter{ĐỀ THAM KHẢO}
+\chaptoc[0.75cm]
+\input{section/DE_THAM_KHAO/DE1/DE1.tex}
+\input{section/DE_THAM_KHAO/DE2/DE2.tex}
+\input{section/DE_THAM_KHAO/DE3/DE3.tex}
+\input{section/DE_THAM_KHAO/DE4/DE4.tex}
+\input{section/DE_THAM_KHAO/DE5/DE5.tex}
+\input{section/DE_THAM_KHAO/DE6/DE6.tex}
+\end{document}
